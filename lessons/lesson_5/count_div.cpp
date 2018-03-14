@@ -8,11 +8,19 @@
 #include <bits/stdc++.h>
 
 int solution(int a, int b, int k) {
-    return (b / k) - ((a - 1) / k);
+    int p = 0;
+    if (a > 0)
+        p = ((a - 1) / k) + 1;
+
+    int q = 0;
+    if (b >= 0)
+        q = (b / k) + 1;
+
+    return q - p;
 }
 
 int main() {
-    printf("%d\n", solution(0, 11, 2));
+    printf("%d\n", solution(6, 11, 2));
 
     return 0;
 }
