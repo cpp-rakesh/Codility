@@ -1,6 +1,6 @@
 /*
   https://app.codility.com/programmers
-  Chapter 3 Exercise 1.
+  Chapter 4 Exercise 1.
   Solution by Rakesh Kumar, cpp.rakesh(at)gmail.com
   Date: 16/03/2018
 */
