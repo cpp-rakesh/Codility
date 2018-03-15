@@ -16,18 +16,11 @@ void print(const vector<int>& v) {
     printf("\n----------------------------------------------\n");
 }
 
-int min(const vector<vector<int>>& v, int x, int y) {
-    if (x == 0) {
-        for (int i = 0; i < 3; ++i)
-            if (v[i][y] - v[i][0])
-                return i + 1;
-    } else {
-        for (int i = 0; i < 3; ++i)
-            if (v[i][y] - v[i][x - 1])
-                return i + 1;
+int min(const vector<vector<int>>& dict, int s, int e) {
+    for (size_t i = 0; i < dict.size(); ++i) {
+        if ((dict[i][e + 1] - dict[i][s]) > 0)
+            return i + 1;
     }
-
-    return 4;
 }
 
 vector<int> solution(string& s, vector<int>& p, vector<int>& q) {
@@ -43,7 +36,7 @@ vector<int> solution(string& s, vector<int>& p, vector<int>& q) {
         dict.push_back(a);
 
     for (size_t i = 0; i < s.size(); ++i) {
-        for (int j = 0; j < 4; ++j)
+        for (size_t j = 0; j < dict.size(); ++j)
             dict[j][i + 1] = dict[j][i];
         ++dict[genes[s[i]]][i + 1];
     }
