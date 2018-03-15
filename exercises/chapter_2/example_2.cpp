@@ -9,13 +9,18 @@
 
 using namespace std;
 
-int days(const vector<int>& v) {
-    int c = 0;
-    for (size_t i = 0; i < v.size(); ++i)
-        if (v[i] < 0)
-            ++c;
+void swap(int& a, int& b) {
+    a ^= b;
+    b ^= a;
+    a ^= b;
+}
 
-    return c;
+void reverse(vector<int>& v) {
+    int i = 0;
+    int j = v.size() - 1;
+
+    while (i < j)
+        swap(v[i++], v[j--]);
 }
 
 inline int random(int s, int e) {
@@ -32,15 +37,16 @@ void print(const vector<int>& v) {
 vector<int> get(int n) {
     vector<int> v;
     for (int i = 0; i < n; ++i)
-        v.push_back(random(-20, 40));
+        v.push_back(random(1, 100));
 
     return v;
 }
 
 int main() {
-    const vector<int> v = get(30);
+    vector<int> v = get(30);
     print(v);
-    printf("Cold days == [%d]\n", days(v));
+    reverse(v);
+    print(v);
 
     return 0;
 }
