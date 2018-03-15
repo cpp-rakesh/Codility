@@ -16,26 +16,41 @@ void print(const vector<int>& v) {
     printf("\n----------------------------------------------\n");
 }
 
-int minimum(string& s, int p, int q) {
-    map<char, int> dict;
-    dict['A'] = 1;
-    dict['C'] = 2;
-    dict['G'] = 3;
-    dict['T'] = 4;
+int min(const vector<vector<int>>& v, int x, int y) {
+    if (x == 0) {
+        for (int i = 0; i < 3; ++i)
+            if (v[i][y] - v[i][0])
+                return i + 1;
+    } else {
+        for (int i = 0; i < 3; ++i)
+            if (v[i][y] - v[i][x - 1])
+                return i + 1;
+    }
 
-    vector<bool> result(4, false);
-    for (int i = p; i <= q; ++i)
-        result[dict[s[i]] - 1] = true;
-
-    for (int i = 0; i < 4; ++i)
-        if (result[i])
-            return i + 1;
+    return 4;
 }
 
 vector<int> solution(string& s, vector<int>& p, vector<int>& q) {
+    unordered_map<char, int> genes;
+    genes['A'] = 0;
+    genes['C'] = 1;
+    genes['G'] = 2;
+    genes['T'] = 3;
+
+    vector<vector<int>> dict;
+    vector<int> a(s.size() + 1, 0);
+    for (size_t i = 0; i < 4; ++i)
+        dict.push_back(a);
+
+    for (size_t i = 0; i < s.size(); ++i) {
+        for (int j = 0; j < 4; ++j)
+            dict[j][i + 1] = dict[j][i];
+        ++dict[genes[s[i]]][i + 1];
+    }
+
     vector<int> r;
     for (size_t i = 0; i < p.size(); ++i)
-        r.push_back(minimum(s, p[i], q[i]));
+        r.push_back(min(dict, p[i], q[i]));
 
     return r;
 }
