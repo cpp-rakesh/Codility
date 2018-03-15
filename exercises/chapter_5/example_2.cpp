@@ -34,23 +34,14 @@ inline int max(int a, int b) {
     return a > b ? a : b;
 }
 
-inline int total(const vector<int>& dict, int x, int y) {
-    printf("x == [%d] || y == [%d]\n", x, y);
-    if (x == 0)
-        return dict[y];
-    else
-        return dict[y] - dict[x - 1];
-}
-
 int max_mushrooms(const vector<int>& v, int k, int m) {
-    vector<int> dict(v.size(), 0);
-    dict[0] = v[0];
-    for (size_t i = 1; i < v.size(); ++i)
-        dict[i] = dict[i - 1] + v[i];
+    vector<int> dict(v.size() + 1, 0);
+    for (size_t i = 0; i < v.size(); ++i)
+        dict[i + 1] = dict[i - 1] + v[i];
 
     int mm = 0;
     for (size_t i = k - m; i <= k; ++i)
-        mm = max(mm, total(dict, i, i + 4));
+        mm = max(mm, dict[i + 4] - dict[i]);
 
     return mm;
 }

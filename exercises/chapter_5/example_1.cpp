@@ -29,17 +29,13 @@ inline void print(const vector<int>& v) {
 }
 
 int total_slice(const vector<int>& v, int s, int e) {
-    vector<int> dict(v.size(), 0);
-    dict[0] = v[0];
-    for (size_t i = 1; i < v.size(); ++i)
-        dict[i] = dict[i - 1] + v[i];
+    vector<int> dict(v.size() + 1, 0);
+    for (size_t i = 0; i < v.size(); ++i)
+        dict[i + 1] = dict[i] + v[i];
 
     print(dict);
 
-    if (s == 0)
-        return dict[e];
-    else
-        return dict[e] - dict[s - 1];
+    return dict[e + 1] - dict[s];
 }
 
 int main() {
