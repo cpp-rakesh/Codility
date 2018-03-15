@@ -37,11 +37,11 @@ inline int max(int a, int b) {
 int max_mushrooms(const vector<int>& v, int k, int m) {
     vector<int> dict(v.size() + 1, 0);
     for (size_t i = 0; i < v.size(); ++i)
-        dict[i + 1] = dict[i - 1] + v[i];
+        dict[i + 1] = dict[i] + v[i];
 
     int mm = 0;
-    for (size_t i = k - m; i <= k; ++i)
-        mm = max(mm, dict[i + 4] - dict[i]);
+    for (int i = k - m + 1; i <= k + 1; ++i)
+        mm = max(mm, dict[i + m] - dict[i - 1]);
 
     return mm;
 }
