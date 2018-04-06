@@ -1,6 +1,6 @@
 /*
   https://app.codility.com/programmers
-  Chapter 12 GCD (Eculidian Algorithms)
+  Chapter 13, Fibonacci Numbers
   Solution by Rakesh Kumar, cpp.rakesh(at)gmail.com
   Date: 26/03/2018
 */
