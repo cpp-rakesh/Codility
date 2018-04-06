@@ -71,18 +71,24 @@ int fibo_recursive_dp(int n, vector<int>& v) {
 }
 
 void test_fibonacci() {
+    clock_t start = clock();
     for (int n = 0; n <= 25; ++n)
         printf("%d ", fibo_iterative(n));
     printf("\n");
+    printf("Exeuction time == [%.08lf] seconds\n", (clock() - start) / static_cast<double>(CLOCKS_PER_SEC));
 
+    start = clock();
     for (int n = 0; n <= 25; ++n)
         printf("%d ", fibo_recursive(n));
     printf("\n");
+    printf("Exeuction time == [%.08lf] seconds\n", (clock() - start) / static_cast<double>(CLOCKS_PER_SEC));
 
     vector<int> v(26, 0);
+    start = clock();
     for (int n = 0; n <= 25; ++n)
         printf("%d ", fibo_recursive_dp(n, v));
     printf("\n");
+        printf("Exeuction time == [%.08lf] seconds\n", (clock() - start) / static_cast<double>(CLOCKS_PER_SEC));
 }
 
 int main() {

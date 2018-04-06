@@ -25,9 +25,10 @@ Matrix<int, 2> power_mat(Matrix<int, 2> m, int y) {
 int main() {
     int data[2][2] = {{1, 1}, {1, 0}};
     Matrix<int, 2> mat(data);
+    clock_t start = clock();
     for (int y = 0; y <= 25; ++y)
         printf("%d ", power_mat(mat, y).Get());
-    printf("\n");
+    printf("\nExecution time == [%.08lf] seconds\n", (clock() - start) / static_cast<double>(CLOCKS_PER_SEC));
 
     return 0;
 }
