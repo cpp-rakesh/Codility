@@ -25,6 +25,21 @@ int gcd_by_div(int a, int b) {
         return gcd_by_div(b, a % b);
 }
 
+int gcd_binary_euclidian(int a, int b, int r) {
+    if (a == b)
+        return r * a;
+    else if ((a % 2 == 0) && (b % 2 == 0))
+        return gcd_binary_euclidian(a >> 1, b >> 1, r << 1);
+    else if (a % 2 == 0)
+        return gcd_binary_euclidian(a >> 1, b, r);
+    else if (b % 2 == 0)
+        return gcd_binary_euclidian(a, b >> 1, r);
+    else if (a > b)
+        return gcd_binary_euclidian(a - b, b, r);
+    else
+        return gcd_binary_euclidian(a, b - a, r);
+}
+
 int random(int s, int e) {
     return s + rand() % (e - s + 1);
 }
@@ -33,7 +48,7 @@ int main() {
     for (int i = 0; i < 10; ++i) {
         const int a = random(2, 100);
         const int b = random(2, 100);
-        printf("GCD(%4d and %4d) == [%4d] || [%4d]\n", a, b, gcd_by_diff(a, b), gcd_by_div(a, b));
+        printf("GCD(%4d and %4d) == [%4d] || [%4d] || [%4d]\n", a, b, gcd_by_diff(a, b), gcd_by_div(a, b), gcd_binary_euclidian(a, b, 1));
     }
 
     return 0;
