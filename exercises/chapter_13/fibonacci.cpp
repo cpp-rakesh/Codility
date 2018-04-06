@@ -26,9 +26,69 @@ vector<int> fibo_numbers(int n) {
     return v;
 }
 
+int fibo_iterative(int n) {
+    int c = 0;
+    if (n == 0) {
+        c = 0;
+    } else if (n == 1) {
+        c = 1;
+    } else {
+        int a = 0;
+        int b = 1;
+        for (int i = 2; i <= n; ++i) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+    }
+
+    return c;
+}
+
+int fibo_recursive(int n) {
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else
+        return fibo_recursive(n - 1) + fibo_recursive(n - 2);
+}
+
+int fibo_recursive_dp(int n, vector<int>& v) {
+    if (!v[n]) {
+        if (n == 0) {
+            v[n] = 0;
+        } else if (n == 1) {
+            v[n] = 1;
+        } else {
+            v[n - 1] = fibo_recursive_dp(n - 1, v);
+            v[n - 2] = fibo_recursive_dp(n - 2, v);
+            v[n] = v[n - 1] + v[n - 2];
+        }
+    }
+
+    return v[n];
+}
+
+void test_fibonacci() {
+    for (int n = 0; n <= 25; ++n)
+        printf("%d ", fibo_iterative(n));
+    printf("\n");
+
+    for (int n = 0; n <= 25; ++n)
+        printf("%d ", fibo_recursive(n));
+    printf("\n");
+
+    vector<int> v(26, 0);
+    for (int n = 0; n <= 25; ++n)
+        printf("%d ", fibo_recursive_dp(n, v));
+    printf("\n");
+}
+
 int main() {
-    const vector<int> v = fibo_numbers(20);
+    const vector<int> v = fibo_numbers(25);
     print(v);
+    test_fibonacci();
 
     return 0;
 }
