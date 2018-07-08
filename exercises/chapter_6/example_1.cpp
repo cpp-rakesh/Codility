@@ -6,11 +6,14 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
 inline int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    std::random_device rd;
+    std::uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 inline vector<int> get(int n) {
