@@ -6,6 +6,7 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
@@ -18,7 +19,9 @@ vector<int> solution(vector<int>& v, int k) {
 }
 
 int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    random_device rd;
+    uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 void print(const vector<int>& v) {
