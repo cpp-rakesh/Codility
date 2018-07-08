@@ -6,6 +6,7 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
@@ -19,7 +20,9 @@ int days(const vector<int>& v) {
 }
 
 inline int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    random_device rd;
+    uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 void print(const vector<int>& v) {
