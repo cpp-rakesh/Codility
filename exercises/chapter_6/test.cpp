@@ -1,5 +1,6 @@
 #include "selection_sort.h"
 #include "merge_sort.h"
+#include <random>
 
 void print(const vector<size_t>& v) {
     printf("--------------------------------------------\n");
@@ -9,7 +10,9 @@ void print(const vector<size_t>& v) {
 }
 
 inline size_t random(size_t s, size_t e) {
-    return s + rand() % (e - s + 1);
+    std::random_device rd;
+    std::uniform_int_distribution<> dt(rd());
+    return dt(rd);
 }
 
 vector<size_t> get(size_t n) {
