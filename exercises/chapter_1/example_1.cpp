@@ -6,6 +6,7 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 void print_stars(int n) {
     for (int i = 0; i < n; ++i) {
@@ -16,7 +17,9 @@ void print_stars(int n) {
 }
 
 inline int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    std::random_device rd;
+    std::uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 int main() {
