@@ -39,7 +39,9 @@ vector<Triplet> triangles(const vector<int>& v) {
 }
 
 inline int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    random_device rd;
+    uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 vector<int> get(int n) {
