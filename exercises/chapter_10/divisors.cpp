@@ -6,6 +6,7 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
@@ -26,7 +27,9 @@ int divisors_count(int n) {
 
 
 int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    random_device rd;
+    uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 int main() {
