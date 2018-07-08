@@ -6,6 +6,7 @@
 */
 
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
@@ -41,7 +42,9 @@ int gcd_binary_euclidian(int a, int b, int r) {
 }
 
 int random(int s, int e) {
-    return s + rand() % (e - s + 1);
+    random_device rd;
+    uniform_int_distribution<> dt(s, e);
+    return dt(rd);
 }
 
 int main() {
