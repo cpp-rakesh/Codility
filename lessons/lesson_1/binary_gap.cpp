@@ -16,7 +16,7 @@ int solution(int n) {
         if (n % 2) {
             if (m > max)
                 max = m;
-            m      = 0;
+            m = 0;
             status = true;
         } else {
             if (status) ++m;
